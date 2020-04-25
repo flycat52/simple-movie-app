@@ -7,11 +7,11 @@ export const FETCHED_MOVIE = 'FETCHED_MOVIE';
 const BASE_URL = process.env.REACT_APP_MOVIE_API;
 
 const fetchingMovie = () => ({
-  type: typeof FETCHING_MOVIE,
+  type: FETCHING_MOVIE,
 });
 
 const fetchedMovie = (response) => ({
-  type: typeof FETCHED_MOVIE,
+  type: FETCHED_MOVIE,
   payload: response,
 });
 
@@ -22,6 +22,6 @@ export const fetchMovie = () => async (dispatch) => {
     const response = await axios.get(BASE_URL);
     dispatch(fetchedMovie(response.data));
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
   }
 };

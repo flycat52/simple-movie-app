@@ -6,29 +6,50 @@ import {
   FormControl,
 } from 'react-bootstrap';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import debounce from 'lodash.debounce';
 
 const SearchBarContainer = styled.div`
   margin: 30px 0;
   display: flex;
-  flex-direction: row;
 `;
 
 const SearchBar = () => {
+  const movieCollection = useSelector((state) => state.movies.results);
+  const productionYears = [
+    ...new Set(
+      movieCollection
+        .map((movie) => movie.productionYear)
+        .sort()
+        .reverse()
+    ),
+  ];
+  const genres = [
+    ...new Set(movieCollection.map((movie) => movie.genre).sort()),
+  ];
+
+  const yearMapping = productionYears && (
+    <DropdownButton className="ml-3" title="Year">
+      {productionYears.map((year, index) => (
+        <Dropdown.Item key={index}>{year}</Dropdown.Item>
+      ))}
+    </DropdownButton>
+  );
+  const genreMapping = genres && (
+    <DropdownButton title="Genre" className="ml-3">
+      {genres.map((genre, index) => (
+        <Dropdown.Item key={index}>{genre}</Dropdown.Item>
+      ))}
+    </DropdownButton>
+  );
+
   return (
     <SearchBarContainer>
-      <InputGroup className="mb-3 mr-3">
+      <InputGroup className="mb-3">
         <FormControl placeholder="Start to search..." aria-label="Search" />
       </InputGroup>
-      <DropdownButton className="mr-3" title="Year">
-        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-      </DropdownButton>
-      <DropdownButton title="Genre">
-        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-      </DropdownButton>
+      {yearMapping}
+      {genreMapping}
     </SearchBarContainer>
   );
 };
