@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 import Header from './components/Header.component';
 import MovieCollection from './components/MovieCollection.component';
 import { useDispatch } from 'react-redux';
-import { fetchMovie } from './actions/movie.action';
+import { fetchMovie } from './actions/movieAction';
 import MovieDetail from './components/MovieDetail.component';
 
 function App() {

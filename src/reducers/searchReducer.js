@@ -2,7 +2,7 @@ const {
   SEARCHING_DATA,
   SEARCHED_DATA,
   RESET_DATA,
-} = require('../actions/search.action');
+} = require('../actions/searchAction');
 
 const initialState = {
   busy: false,
