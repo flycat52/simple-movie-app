@@ -1,21 +1,36 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This is a simple movie web app which allows you to browser movies and search by certain criteria. The main functionalities include:
+
+- The main page where you can see a grid of movies (images are not provided)
+- The movie detail page where you can see the details of a movie
+- Clicking on a movie in main page should show the movie detail page
+- A main button at the top should take the user to the main page
+- User should be able to filter movie per year and per genre in the main page
+
+## Before Running
+
+Create `.env` file under root folder, it should include following configuration:
+
+```
+NODE_ENV=development
+REACT_APP_MOVIE_API=https://g5jezgqoe1.execute-api.us-east-1.amazonaws.com/stg
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The page will reload if you make edits.
 
-### `yarn test`
+### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
 
 ### `yarn build`
 
@@ -27,7 +42,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### `npm eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -37,32 +52,15 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Tech Stack
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- React.js
+- Redux
+- Bootstrap
+- Styled-components
+- Enzyme + Jest
+- redux-mock-store
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Addition
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The project has been set with Github Actions. It will be triggered on each commit.
