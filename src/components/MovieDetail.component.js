@@ -16,7 +16,7 @@ const MovieDetail = () => {
 
   const ShortDescription = styled(Card)`
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap
     margin-bottom: 20px;
   `;
 
@@ -31,7 +31,6 @@ const MovieDetail = () => {
           src={imageSrc}
           data-src={movie.image}
           alt={movie.name}
-          style={{ width: '28rem' }}
         />
         <Card.Body>
           <Card.Title>{movie.name}</Card.Title>

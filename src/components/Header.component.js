@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchBar from './SearchBar.component';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
@@ -10,7 +9,6 @@ const Header = () => {
   return (
     <HeaderContainer>
       <h1>Movie Gallery</h1>
-      <SearchBar />
     </HeaderContainer>
   );
 };

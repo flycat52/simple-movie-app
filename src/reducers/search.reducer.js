@@ -1,31 +1,31 @@
-import {
-  FETCHING_MOVIE,
-  FETCHED_MOVIE,
-  RESET_MOVIE,
-} from '../actions/movie.action';
+const {
+  SEARCHING_DATA,
+  SEARCHED_DATA,
+  RESET_DATA,
+} = require('../actions/search.action');
 
 const initialState = {
   busy: false,
   results: [],
 };
 
-const movieReducer = (state = initialState, action) => {
+const searchReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCHING_MOVIE:
+    case SEARCHING_DATA:
       return {
         ...state,
         busy: true,
       };
-    case FETCHED_MOVIE:
+    case SEARCHED_DATA:
       return {
         ...state,
         results: [...action.payload],
         busy: false,
       };
-    case RESET_MOVIE:
     default:
+    case RESET_DATA:
       return state;
   }
 };
 
-export default movieReducer;
+export default searchReducer;

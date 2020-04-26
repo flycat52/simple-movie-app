@@ -1,20 +1,30 @@
-import React from 'react';
-import {
-  DropdownButton,
-  Dropdown,
-  InputGroup,
-  FormControl,
-} from 'react-bootstrap';
+import React, { useState, useCallback, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import debounce from 'lodash.debounce';
+import { searchData } from '../actions/search.action';
 
 const SearchBarContainer = styled.div`
   margin: 30px 0;
   display: flex;
+  flex-direction: column;
+`;
+
+const Selection = styled.select`
+  cursor: pointer;
+  width: 100%;
+  line-height: 24px;
 `;
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
+
+  const [query, setQuery] = useState({
+    productionYear: '',
+    genre: '',
+  });
+
   const movieCollection = useSelector((state) => state.movies.results);
   const productionYears = [
     ...new Set(
@@ -24,32 +34,59 @@ const SearchBar = () => {
         .reverse()
     ),
   ];
+
   const genres = [
     ...new Set(movieCollection.map((movie) => movie.genre).sort()),
   ];
 
+  const debounceSearch = useCallback(
+    debounce((query) => {
+      dispatch(searchData(movieCollection, query));
+    }, 800),
+    []
+  );
+
   const yearMapping = productionYears && (
-    <DropdownButton className="ml-3" title="Year">
+    <Selection
+      value={query.productionYear}
+      onChange={(e) => setQuery({ ...query, productionYear: e.target.value })}
+    >
+      <option value="">Select Year</option>
       {productionYears.map((year, index) => (
-        <Dropdown.Item key={index}>{year}</Dropdown.Item>
+        <option key={index} value={year}>
+          {year}
+        </option>
       ))}
-    </DropdownButton>
+    </Selection>
   );
   const genreMapping = genres && (
-    <DropdownButton title="Genre" className="ml-3">
+    <Selection
+      value={query.genre}
+      onChange={(e) => setQuery({ ...query, genre: e.target.value })}
+    >
+      <option value="">Select Genre</option>
       {genres.map((genre, index) => (
-        <Dropdown.Item key={index}>{genre}</Dropdown.Item>
+        <option key={index} value={genre}>
+          {genre}
+        </option>
       ))}
-    </DropdownButton>
+    </Selection>
   );
+
+  const searchMovie = () => {
+    console.log('start searching...');
+    debounceSearch(query);
+  };
+
+  useEffect(() => {
+    console.log(query);
+  }, [query]);
 
   return (
     <SearchBarContainer>
-      <InputGroup className="mb-3">
-        <FormControl placeholder="Start to search..." aria-label="Search" />
-      </InputGroup>
       {yearMapping}
       {genreMapping}
+      <Button onClick={searchMovie}>Search</Button>
     </SearchBarContainer>
   );
 };
