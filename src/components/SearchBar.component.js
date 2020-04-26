@@ -1,11 +1,10 @@
 import React, { useState, useCallback } from 'react';
-// import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import debounce from 'lodash.debounce';
-import { searchData } from '../actions/search.action';
+import { searchData } from '../actions/searchAction';
 import Selection from './Selection.component';
-import Button from './Button';
+import Button from './Button.component';
 
 const SearchBarContainer = styled.div`
   margin: 30px 0;

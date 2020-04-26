@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Card } from 'react-bootstrap';
 import { imageSrc } from '../constants/defaultImageSrc';
-import Button from './Button';
+import Button from './Button.component';
 
 const MovieDetail = () => {
   let history = useHistory();

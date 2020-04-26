@@ -1,17 +1,19 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../utils/react-redux-hooks';
 import SearchBar from './SearchBar.component';
 import Collection from './Collection.component';
 
 const MovieCollection = () => {
-  const movieCollection = useSelector((state) => state.movies.results);
-  const searchResult = useSelector((state) => state.search.results);
+  const { movies, search } = useSelector((state) => ({
+    movies: state.movies.results,
+    search: state.search.results,
+  }));
 
   let movieData = [];
-  if (searchResult.length > 0) {
-    movieData = searchResult;
+  if (search.length > 0) {
+    movieData = search;
   } else {
-    movieData = movieCollection;
+    movieData = movies;
   }
 
   return movieData.length > 0 ? (
