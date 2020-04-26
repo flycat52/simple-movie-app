@@ -8,9 +8,10 @@ const searchingData = () => ({
   type: SEARCHING_DATA,
 });
 
-const searchedData = (response) => ({
+const searchedData = (response, query) => ({
   type: SEARCHED_DATA,
   payload: response,
+  query,
 });
 
 export const searchData = (movies, query) => async (dispatch) => {
@@ -22,7 +23,7 @@ export const searchData = (movies, query) => async (dispatch) => {
         movie.productionYear.toString().indexOf(query.productionYear) !== -1 &&
         movie.genre.indexOf(query.genre) !== -1
     );
-    dispatch(searchedData(response));
+    dispatch(searchedData(response, query));
   } catch (err) {
     dispatch(resetData());
     console.log(err.message);

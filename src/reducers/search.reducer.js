@@ -7,6 +7,10 @@ const {
 const initialState = {
   busy: false,
   results: [],
+  query: {
+    productionYear: '',
+    genre: '',
+  },
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -20,6 +24,7 @@ const searchReducer = (state = initialState, action) => {
       return {
         ...state,
         results: [...action.payload],
+        query: action.query,
         busy: false,
       };
     default:
