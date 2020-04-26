@@ -1,9 +1,24 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { Card } from 'react-bootstrap';
 import { imageSrc } from '../constants/defaultImageSrc';
 import Button from './Button.component';
+import { Card, Info } from './Collection.component';
+
+const Body = styled.div`
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+`;
+
+const MovieDetailContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Img = styled.img`
+  width: 100%;
+`;
 
 const MovieDetail = () => {
   let history = useHistory();
@@ -11,50 +26,35 @@ const MovieDetail = () => {
 
   const movie = state && state.details;
 
-  const MovieDetailContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-  `;
-
-  const ShortDescription = styled(Card)`
-    display: flex;
-    flex-direction: row !important;
-    margin-bottom: 20px;
-  `;
-
   return (
     <>
-      <Button primary>Back to Home</Button>
+      <Button primary onClick={() => history.push('/')}>
+        Back to Home
+      </Button>
       {movie ? (
         <MovieDetailContainer>
-          <ShortDescription>
-            <Card.Img
-              variant="left"
-              src={imageSrc}
-              data-src={movie.image}
-              alt={movie.name}
-            />
-            <Card.Body>
-              <Card.Title>{movie.name}</Card.Title>
-              <Card.Text className={'mb-0'}>
-                <b>Year</b>: {movie.productionYear}
-              </Card.Text>
-              <Card.Text className={'mb-0'}>
-                <b>Genre</b>: {movie.genre}
-              </Card.Text>
-              <Card.Text className={'mb-0'}>
-                <b>Overview</b>
-              </Card.Text>
-              <Card.Text>{movie.synopsisShort}</Card.Text>
-            </Card.Body>
-          </ShortDescription>
           <Card>
-            <Card.Body>
-              <Card.Title>Synopsis</Card.Title>
-              <Card.Text
+            <Img src={imageSrc} data-src={movie.image} alt={movie.name} />
+            <Body>
+              <h2>{movie.name}</h2>
+              <Info>
+                <b>Year</b>: {movie.productionYear}
+                <br />
+                <b>Genre</b>: {movie.genre}
+                <br />
+                <b>Overview</b>
+                <br />
+                {movie.synopsisShort}
+              </Info>
+            </Body>
+          </Card>
+          <Card>
+            <Body>
+              <h2>Synopsis</h2>
+              <label
                 dangerouslySetInnerHTML={{ __html: movie.synopsis }}
-              ></Card.Text>
-            </Card.Body>
+              ></label>
+            </Body>
           </Card>
         </MovieDetailContainer>
       ) : (
