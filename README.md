@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This is a simple movie web app which allows you to browser movies and search by certain criteria. The main functionalities include:
+This is a simple movie web app which allows you to browse movies and search by certain criteria. The main functionalities include:
 
 - The main page where you can see a grid of movies (images are not provided)
 - The movie detail page where you can see the details of a movie
@@ -32,15 +32,10 @@ The page will reload if you make edits.
 
 Launches the test runner in the interactive watch mode.
 
-### `yarn build`
+### `npm build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm eject`
 
@@ -52,7 +47,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-### Tech Stack
+## Tech Stack
 
 - React.js
 - Redux
@@ -61,6 +56,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 - Enzyme + Jest
 - redux-mock-store
 
-### Addition
+## Addition
 
 The project has been set with Github Actions. It will be triggered on each commit.
