@@ -77,7 +77,10 @@ exports[`MovieCollection should render MovieCollection component successfully wi
 `;
 
 exports[`MovieCollection should render MovieCollection component successfully without data 1`] = `
-<p>
-  No data found. 
-</p>
+<Fragment>
+  <SearchBar />
+  <p>
+    No data found. 
+  </p>
+</Fragment>
 `;

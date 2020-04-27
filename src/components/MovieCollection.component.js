@@ -6,23 +6,29 @@ import Collection from './Collection.component';
 const MovieCollection = () => {
   const { movies, search } = useSelector((state) => ({
     movies: state.movies.results,
-    search: state.search.results,
+    search: state.search,
   }));
 
   let movieData = [];
-  if (search.length > 0) {
-    movieData = search;
+  if (
+    search.results.length > 0 ||
+    search.query.productionYear !== '' ||
+    search.query.genre !== ''
+  ) {
+    movieData = search.results;
   } else {
     movieData = movies;
   }
 
-  return movieData.length > 0 ? (
+  return (
     <>
       <SearchBar />
-      <Collection data={movieData} />
+      {movieData.length > 0 ? (
+        <Collection data={movieData} />
+      ) : (
+        <p>No data found. </p>
+      )}
     </>
-  ) : (
-    <p>No data found. </p>
   );
 };
 

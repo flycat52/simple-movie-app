@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { shallow } from 'enzyme';
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
@@ -16,7 +16,13 @@ describe('MovieCollection', () => {
     const mockStore = configureStore([thunk]);
     store = mockStore({
       movies: mockMovieData,
-      search: [],
+      search: {
+        results: [],
+        query: {
+          productionYear: '',
+          genre: '',
+        },
+      },
     });
 
     jest
@@ -31,8 +37,14 @@ describe('MovieCollection', () => {
   it('should render MovieCollection component successfully without data', () => {
     const mockStore = configureStore([thunk]);
     store = mockStore({
-      movies: [],
-      search: [],
+      movies: { results: [] },
+      search: {
+        results: [],
+        query: {
+          productionYear: '',
+          genre: '',
+        },
+      },
     });
 
     jest
@@ -40,6 +52,7 @@ describe('MovieCollection', () => {
       .mockImplementation((state) => store.getState());
     wrapper = shallow(<MovieCollection />);
     expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(SearchBar)).toBeTruthy();
     expect(wrapper.find('p')).toBeTruthy();
   });
 });
