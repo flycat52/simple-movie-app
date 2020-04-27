@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+To access the web app, please visit https://agitated-edison-a7854d.netlify.app/
+
 This is a simple movie web app which allows you to browse movies and search by certain criteria. The main functionalities include:
 
 - The main page where you can see a grid of movies (images are not provided)
@@ -58,4 +60,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Addition
 
-The project has been set with Github Actions. It will be triggered on each commit.
+Full CI/CD workflow with Github Actions and deploy to Netlify.
